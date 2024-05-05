@@ -13,7 +13,7 @@ export function _readFile(path: string, usrOpts: object): Promise<string> {
   };
   Object.assign(opts, usrOpts);
   return new Promise((resolve, reject) => {
-    const rs = fs.createReadStream(path, {encoding: opts.encoding});
+    const rs = fs.createReadStream(path) ;  //, {encoding: opts.encoding});
     let acc = '';
     let pos = 0;
     let index;

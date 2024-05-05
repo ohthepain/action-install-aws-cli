@@ -1,6 +1,8 @@
 # @actions
 tests/runner/*
 
+*.tsbuildinfo
+
 # Mac
 .DS_Store
 

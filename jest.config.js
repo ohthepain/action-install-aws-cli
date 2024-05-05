@@ -1,7 +1,7 @@
 /* eslint-disable */
 // To have different commands to run unit tests and integration tests
 // https://medium.com/coding-stones/separating-unit-and-integration-tests-in-jest-f6dd301f399c
-const {defaults} = require('jest-config/build/index')
+// const {defaults} = require('jest-config/build/index')
 
 module.exports = {
   'roots': [
@@ -13,7 +13,7 @@ module.exports = {
   },
   globals: {
     'ts-jest': {
-      tsConfig: 'tsconfig.json'
+      tsconfig: 'tsconfig.json'
     }
   },
 
@@ -36,7 +36,7 @@ module.exports = {
     }
   },
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
-  moduleFileExtensions: [...defaults.moduleFileExtensions, 'ts'],
+  // moduleFileExtensions: [...defaults.moduleFileExtensions, 'ts'],
 
   testEnvironment: 'node'
 }

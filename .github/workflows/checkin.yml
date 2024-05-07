@@ -29,6 +29,9 @@ jobs:
     - name: Run
       run: node v1/index.js
 
+    - name: run aws
+      run: aws s3 ls
+
     # - name: "npm run test"
     #   run: npm run test
 

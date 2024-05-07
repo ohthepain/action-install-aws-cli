@@ -28849,7 +28849,6 @@ async function installAWSCliWindows() {
 }
 
 async function _installTool() {
-  installAWSCliWindows()
   if (IS_MACOS) {
     return await installMacOS();
   } else if (IS_LINUX_ARM) {

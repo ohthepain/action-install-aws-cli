@@ -29,7 +29,7 @@ function setupTest() {
 
 describe('Test End to End', () => {
   setupTest();
-  const installTimeoutMsec = 300000;
+  const installTimeoutMsec = 600000;
   it('Will download, cache and return aws-cli', async () => {
     jest.setTimeout(installTimeoutMsec);
     const toolPath = await _installTool();

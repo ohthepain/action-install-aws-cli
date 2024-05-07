@@ -1,6 +1,7 @@
 const { exec } = require('child_process');
 const path = require('path');
 const { installMacOS } = require('./macOsSupport');
+const toolManager = require('./toolManager');
 
 const IS_WINDOWS = process.platform === 'win32';
 const IS_MACOS = process.platform === 'darwin';
@@ -36,9 +37,6 @@ function installAwsCliLinuxARM() {
 }
 
 async function installAWSCliWindows() {
-  const downloadUrl = 'https://s3.amazonaws.com/aws-cli/AWSCLISetup.exe';
-  const tool = new DownloadExtractInstall(downloadUrl)
-
   const isInstalled = await tool.isAlreadyInstalled('aws')
   if (typeof isInstalled === 'string') {
     console.log('WARNING: AWS CLI is already installed but we shall continue');
@@ -46,6 +44,9 @@ async function installAWSCliWindows() {
     // return isInstalled
   }
 
+  const downloadUrl = 'https://s3.amazonaws.com/aws-cli/AWSCLISetup.exe';
+  const tool = new toolManager(downloadUrl)
+  console.log(`start downloadUrl ${downloadUrl}`);
   let installerPath = await tool.downloadFile();
   console.log(`downloaded windows exe to ${installerPath}`);
   const destDir = 'C:\\PROGRA~1\\Amazon\\AWSCLI';

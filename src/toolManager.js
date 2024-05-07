@@ -7,7 +7,7 @@ const { _filterVersion, _readFile } = require('./util');
 
 const IS_WINDOWS = process.platform === 'win32';
 
-class DownloadExtractInstall {
+class toolManager {
   constructor(downloadUrl) {
     this.downloadUrl = downloadUrl;
     this.fileType = this.downloadUrl.substr(-4);
@@ -62,7 +62,9 @@ class DownloadExtractInstall {
   async downloadFile() {
     const filePath = await tc.downloadTool(this.downloadUrl);
     const destPath = `${filePath}${this.fileType}`;
+    console.log(`toolManager: start download of ${filePath} to ${destPath}`);
     await io.mv(filePath, destPath);
+    console.log(`toolManager: dunn`);
     return destPath;
   }
 
@@ -86,4 +88,4 @@ class DownloadExtractInstall {
   }
 }
 
-module.exports = { DownloadExtractInstall };
+module.exports = { toolManager };

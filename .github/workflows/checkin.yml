@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         # os: [windows-latest, ubuntu-latest, macOS-10.14, windows-2016, ubuntu-18.04]
-        os: [windows-latest]
+        os: [ubuntu-latest]
     steps:
     - uses: actions/checkout@v2
     # - uses: actions/setup-node@v4
@@ -37,3 +37,10 @@ jobs:
 
     # - name: "install aws cli"
     #   uses: ohthepain/action-install-aws-cli@v0.3
+
+    - uses: ohthepain/action-install-aws-cli@v0.4
+      # All commands after this point have access to the AWS CLI
+      run: aws s3 ls
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

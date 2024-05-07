@@ -37,6 +37,7 @@ function installAwsCliLinuxARM() {
 }
 
 async function installAWSCliWindows() {
+  const tool = new toolManager(downloadUrl)
   const isInstalled = await tool.isAlreadyInstalled('aws')
   if (typeof isInstalled === 'string') {
     console.log('WARNING: AWS CLI is already installed but we shall continue');
@@ -45,7 +46,6 @@ async function installAWSCliWindows() {
   }
 
   const downloadUrl = 'https://s3.amazonaws.com/aws-cli/AWSCLISetup.exe';
-  const tool = new toolManager(downloadUrl)
   console.log(`start downloadUrl ${downloadUrl}`);
   let installerPath = await tool.downloadFile();
   console.log(`downloaded windows exe to ${installerPath}`);

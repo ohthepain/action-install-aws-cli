@@ -22,3 +22,6 @@ jobs:
 
     - name: "npm run test"
       run: npm run test
+
+    - name: "install aws cli"
+      uses: ohthepain/action-install-aws-cli@v0.2

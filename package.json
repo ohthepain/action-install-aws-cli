@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "description": "Installs AWS cli",
-  "main": "lib/main.js",
+  "main": "src/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "ncc build src/index.js --license LICENSE -o v1",
+    "run": "node v1/index.js",
     "test": "jest --coverage",
-    "format": "eslint --fix './src/*.ts'; eslint --fix './tests/*.ts'",
     "publish": "branch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD); if [[ $branch == \"master\" ]]; then npm run-script \"change-branch\"; else npm run-script \"create-publish\"; fi;",
     "change-branch": "echo \"Should not publish on master\" && exit 1",
     "create-publish": "npm i && npm run build && git rm -rq --ignore-unmatch ./node_modules && rm -rf ./node_modules && npm i --production && git add . && echo \"Ready to commit\" && exit 0"
@@ -43,7 +43,6 @@
     "jest": "^29.7.0",
     "jest-circus": ">24.7.1",
     "nock": ">10.0.6",
-    "ts-jest": "^29.1.2",
     "typescript": ">3.5.1"
   }
 }

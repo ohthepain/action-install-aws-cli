@@ -1,19 +1,20 @@
-import * as fs from 'fs'
+const fs = require('fs');
+const { join } = require('path');
 
-export function _filterVersion(stdmsg: string): string {
+function _filterVersion(stdmsg) {
   const cliVersion = stdmsg.match('(\\d+\\.)(\\d+\\.)(\\d+)')
   if (cliVersion) return cliVersion[0]
   else return '0.0.0'
 }
 
-export function _readFile(path: string, usrOpts: object): Promise<string> {
+function _readFile(path, usrOpts) {
   const opts = {
     encoding: 'utf8',
     lineEnding: '\n'
   };
   Object.assign(opts, usrOpts);
   return new Promise((resolve, reject) => {
-    const rs = fs.createReadStream(path) ;  //, {encoding: opts.encoding});
+    const rs = fs.createReadStream(path);
     let acc = '';
     let pos = 0;
     let index;
@@ -32,3 +33,20 @@ export function _readFile(path: string, usrOpts: object): Promise<string> {
       .on('error', err => reject(err));
   });
 };
+
+function getLocalDir(dir) {
+  const localDir = join(
+    __dirname,
+    'runner',
+    join(
+      Math.random()
+        .toString(36)
+        .substring(7)
+    ),
+    dir
+  );
+  return localDir;
+}
+
+
+module.exports = { _filterVersion, _readFile, getLocalDir };

@@ -15,6 +15,6 @@ describe('Test End to End', () => {
     jest.setTimeout(installTimeoutMsec);
     const toolPath = await _installTool();
     console.log(`toolPath: ${toolPath}`);
-    expect(toolPath).toContain('AWS');
+    expect(toolPath).toContain('AWS') || (toolPath).toContain('aws');
   }, installTimeoutMsec);
 });

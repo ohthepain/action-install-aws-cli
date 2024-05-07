@@ -14,11 +14,14 @@ jobs:
     - uses: actions/setup-node@v1
     - uses: actions/checkout@v1
 
-    - name: "npm update"
+    - name: Upgrade Node
       run: npm upgrade node
 
-    - name: install ncc
+    - name: Install ncc
       run: npm i -g @vercel/ncc
+
+    - name: Check Node Version
+      run: node -v
 
     - name: "npm install"
       run: npm install

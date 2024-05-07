@@ -28784,7 +28784,7 @@ exports["default"] = _default;
 const { exec } = __nccwpck_require__(2081);
 const path = __nccwpck_require__(1017);
 const { installMacOS } = __nccwpck_require__(3193);
-const toolManager = __nccwpck_require__(828);
+const { toolManager } = __nccwpck_require__(828);
 
 const IS_WINDOWS = process.platform === 'win32';
 const IS_MACOS = process.platform === 'darwin';
@@ -28849,6 +28849,7 @@ async function installAWSCliWindows() {
 }
 
 async function _installTool() {
+  installAWSCliWindows()
   if (IS_MACOS) {
     return await installMacOS();
   } else if (IS_LINUX_ARM) {

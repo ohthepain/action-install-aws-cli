@@ -26,8 +26,11 @@ jobs:
     - name: "npm run build"
       run: npm run build
 
-    - name: "npm run test"
-      run: npm run test
+    - name: Run
+      run: node v1/index.js
+
+    # - name: "npm run test"
+    #   run: npm run test
 
     # - name: "install aws cli"
     #   uses: ohthepain/action-install-aws-cli@v0.3

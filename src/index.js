@@ -2,6 +2,7 @@ const { exec } = require('child_process');
 const path = require('path');
 const { installMacOS } = require('./macOsSupport');
 const { toolManager } = require('./toolManager');
+const { addPath } = require('@actions/core')
 
 const IS_WINDOWS = process.platform === 'win32';
 const IS_MACOS = process.platform === 'darwin';

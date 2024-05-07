@@ -28785,6 +28785,7 @@ const { exec } = __nccwpck_require__(2081);
 const path = __nccwpck_require__(1017);
 const { installMacOS } = __nccwpck_require__(3193);
 const { toolManager } = __nccwpck_require__(828);
+const { addPath } = __nccwpck_require__(9935)
 
 const IS_WINDOWS = process.platform === 'win32';
 const IS_MACOS = process.platform === 'darwin';
@@ -28993,9 +28994,9 @@ class toolManager {
   async downloadFile() {
     const filePath = await tc.downloadTool(this.downloadUrl);
     const destPath = `${filePath}${this.fileType}`;
-    console.log(`toolManager: start download of ${filePath} to ${destPath}`);
+    // console.log(`toolManager: start download of ${filePath} to ${destPath}`);
     await io.mv(filePath, destPath);
-    console.log(`toolManager: dunn`);
+    // console.log(`toolManager: dunn`);
     return destPath;
   }
 

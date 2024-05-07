@@ -8,8 +8,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        # os: [windows-latest, macOS-10.14, windows-2016, ubuntu-18.04]
-        os: [ubuntu-latest]
+        # os: [windows-latest, ubuntu-latest, macOS-10.14, windows-2016, ubuntu-18.04]
+        os: [windows-latest]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v4
@@ -17,20 +17,11 @@ jobs:
     - name: Check Node Version
       run: node -v
 
-    # - name: Upgrade Node
-    #   run: npm upgrade node
-
     - name: Install ncc
       run: npm i -g @vercel/ncc
 
     - name: "npm install"
       run: npm install
-
-    - name: show package.lock
-      run: cat package-lock.json
-
-    - name: Does ncc exist
-      run: which ncc
 
     - name: "npm run build"
       run: npm run build

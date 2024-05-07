@@ -21,7 +21,7 @@
     "node",
     "setup"
   ],
-  "author": "paulwilkinson and chrislennon",
+  "author": "paulwilkinson based on a fork chrislennon's repo",
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.0.0",

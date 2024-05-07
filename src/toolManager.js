@@ -62,9 +62,9 @@ class toolManager {
   async downloadFile() {
     const filePath = await tc.downloadTool(this.downloadUrl);
     const destPath = `${filePath}${this.fileType}`;
-    console.log(`toolManager: start download of ${filePath} to ${destPath}`);
+    // console.log(`toolManager: start download of ${filePath} to ${destPath}`);
     await io.mv(filePath, destPath);
-    console.log(`toolManager: dunn`);
+    // console.log(`toolManager: dunn`);
     return destPath;
   }
 

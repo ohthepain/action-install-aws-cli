@@ -11,8 +11,8 @@ jobs:
         # os: [windows-latest, macOS-10.14, windows-2016, ubuntu-18.04]
         os: [ubuntu-latest]
     steps:
-    - uses: actions/setup-node@v1
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v4
 
     - name: Upgrade Node
       run: npm upgrade node

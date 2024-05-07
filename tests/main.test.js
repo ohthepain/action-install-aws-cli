@@ -7,10 +7,8 @@ process.env['RUNNER_TEMP'] = tempPath;
 process.env['RUNNER_TOOL_CACHE'] = cachePath;
 
 const { rmRF } = require('@actions/io');
-const { cacheFile, downloadTool, find } = require('@actions/tool-cache');
 const nock = require('nock');
 const { _installTool } = require('../src/index');
-const { _filterVersion } = require('../src/util');
 
 function setupTest() {
   beforeAll(function () {

@@ -14,8 +14,17 @@ jobs:
     - uses: actions/setup-node@v1
     - uses: actions/checkout@v1
 
-    - name: "npm i"
-      run: npm i
+    - name: install ncc
+      run: npm i -g @vercel/ncc
+
+    - name: "npm install"
+      run: npm install
+
+    - name: show package.lock
+      run: cat package-lock.json
+
+    - name: Does ncc exist
+      run: which ncc
 
     - name: "npm run build"
       run: npm run build

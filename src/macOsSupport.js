@@ -42,7 +42,7 @@ async function installMacOS() {
             if (error) {
                 reject(`Error installing AWS CLI: ${error.message}`);
             }
-            // resolve(`AWS CLI installed successfully: ${stdout}`);
+            resolve(`AWS CLI installed successfully: ${stdout}`);
         });
     });
 }

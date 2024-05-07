@@ -35,6 +35,7 @@ describe('Test End to End', () => {
   it('Will download, cache and return aws-cli', async () => {
     jest.setTimeout(installTimeoutMsec);
     const toolPath = await _installTool();
-    expect(toolPath).toContain('aws');
-  }, installTimeout);
+    console.log(`toolPath: ${toolPath}`);
+    expect(toolPath).toContain('AWS');
+  }, installTimeoutMsec);
 });

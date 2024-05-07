@@ -6,7 +6,7 @@
 
 const { exec } = __nccwpck_require__(81);
 const path = __nccwpck_require__(17);
-const macOsSuppport = __nccwpck_require__(193)
+const { installMacOS } = __nccwpck_require__(193);
 
 const IS_WINDOWS = process.platform === 'win32';
 const IS_MACOS = process.platform === 'darwin';

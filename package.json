@@ -7,6 +7,7 @@
   "scripts": {
     "build": "ncc build src/index.js --license LICENSE -o v1",
     "run": "node v1/index.js",
+    "debug": "node v1/index.js",
     "test": "jest --coverage --detectOpenHandles",
     "publish": "branch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD); if [[ $branch == \"master\" ]]; then npm run-script \"change-branch\"; else npm run-script \"create-publish\"; fi;",
     "change-branch": "echo \"Should not publish on master\" && exit 1",

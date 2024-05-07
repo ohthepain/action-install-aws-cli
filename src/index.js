@@ -43,8 +43,6 @@ async function installAWSCliWindows() {
   const isInstalled = await tool.isAlreadyInstalled('aws')
   if (typeof isInstalled === 'string') {
     console.log('WARNING: AWS CLI is already installed but we shall continue');
-    // TODO: Figure out what is best to do when already found
-    // return isInstalled
   }
 
   console.log(`start downloadUrl ${downloadUrl}`);
@@ -53,20 +51,23 @@ async function installAWSCliWindows() {
   const destDir = 'C:\\PROGRA~1\\Amazon\\AWSCLI';
   const binFile = 'aws.exe';
   const destPath = path.join(destDir, 'bin', binFile);
-  console.log(`destPath ${destPath}`);
+  // console.log(`destPath ${destPath}`);
 
   const installArgs = ['/install', '/quiet', '/norestart'];
   await tool.installPackage(installerPath, installArgs);
-  console.log(`installed package`);
 
   const toolCachePath = await tool.cacheTool(destPath);
   addPath(toolCachePath);
-  console.log(`added path toolCachePath ${toolCachePath}`);
 
   return toolCachePath;
 }
 
 async function _installTool() {
+  // const time = (new Date()).toTimeString();
+  // core.setOutput("time", time);
+  // const payload = JSON.stringify(github.context.payload, undefined, 2)
+  // console.log(`The event payload: ${payload}`);
+
   if (IS_MACOS) {
     return await installMacOS();
   } else if (IS_LINUX_ARM) {

@@ -28787,6 +28787,7 @@ const { installMacOS } = __nccwpck_require__(3193);
 const { toolManager } = __nccwpck_require__(828);
 const { addPath } = __nccwpck_require__(9935)
 const toolCache = __nccwpck_require__(2275);
+const io = __nccwpck_require__(2725);
 
 const IS_WINDOWS = process.platform === 'win32';
 const IS_MACOS = process.platform === 'darwin';

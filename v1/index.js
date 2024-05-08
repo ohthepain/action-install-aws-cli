@@ -28792,7 +28792,21 @@ const IS_MACOS = process.platform === 'darwin';
 const IS_LINUX_ARM = process.platform === 'linux' && process.arch === 'arm';
 const IS_LINUX_X64 = process.platform === 'linux' && process.arch === 'x64';
 
-function installAwsCliLinuxX64() {
+async function isAlreadyInstalled(toolName) {
+  const cachePath = await tc.find(toolName, '*');
+  const systemPath = await io.which(toolName);
+  if (cachePath) return cachePath;
+  if (systemPath) {
+    return systemPath;
+  }
+  return false;
+}
+
+async function installAwsCliLinuxX64() {
+  if (await isAlreadyInstalled("aws")) {
+    return resolve(`AWS CLI is already installed`);
+  }
+
   return new Promise((resolve, reject) => {
     exec('curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && sudo ./aws/install', (error, stdout, stderr) => {
       if (error) {
@@ -28806,7 +28820,11 @@ function installAwsCliLinuxX64() {
   });
 }
 
-function installAwsCliLinuxARM() {
+async function installAwsCliLinuxARM() {
+  if (await isAlreadyInstalled("aws")) {
+    return resolve(`AWS CLI is already installed`);
+  }
+
   return new Promise((resolve, reject) => {
     exec('curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && sudo ./aws/install', (error, stdout, stderr) => {
       if (error) {
@@ -28864,9 +28882,9 @@ async function _installTool() {
   }
 }
 
-_installTool()
-
 module.exports = { _installTool };
+
+_installTool()
 
 
 /***/ }),
@@ -28932,7 +28950,7 @@ module.exports = { installMacOS };
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 const { exec } = __nccwpck_require__(3409);
-const core = __nccwpck_require__(9935);
+// const core = require('@actions/core');
 const tc = __nccwpck_require__(2275);
 const io = __nccwpck_require__(2725);
 const path = __nccwpck_require__(1017);
@@ -28946,15 +28964,15 @@ class toolManager {
     this.fileType = this.downloadUrl.substr(-4);
   }
 
-  async isAlreadyInstalled(toolName) {
-    const cachePath = await tc.find(toolName, '*');
-    const systemPath = await io.which(toolName);
-    if (cachePath) return cachePath;
-    if (systemPath) {
-      return systemPath;
-    }
-    return false;
-  }
+  // async isAlreadyInstalled(toolName) {
+  //   const cachePath = await tc.find(toolName, '*');
+  //   const systemPath = await io.which(toolName);
+  //   if (cachePath) return cachePath;
+  //   if (systemPath) {
+  //     return systemPath;
+  //   }
+  //   return false;
+  // }
 
   async _getVersion(installedBinary) {
     const versionCommandOutput = await this._getCommandOutput(installedBinary, ['--version']);

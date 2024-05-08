@@ -1,5 +1,5 @@
 const { exec } = require('@actions/exec');
-const core = require('@actions/core');
+// const core = require('@actions/core');
 const tc = require('@actions/tool-cache');
 const io = require('@actions/io');
 const path = require('path');
@@ -13,15 +13,15 @@ class toolManager {
     this.fileType = this.downloadUrl.substr(-4);
   }
 
-  async isAlreadyInstalled(toolName) {
-    const cachePath = await tc.find(toolName, '*');
-    const systemPath = await io.which(toolName);
-    if (cachePath) return cachePath;
-    if (systemPath) {
-      return systemPath;
-    }
-    return false;
-  }
+  // async isAlreadyInstalled(toolName) {
+  //   const cachePath = await tc.find(toolName, '*');
+  //   const systemPath = await io.which(toolName);
+  //   if (cachePath) return cachePath;
+  //   if (systemPath) {
+  //     return systemPath;
+  //   }
+  //   return false;
+  // }
 
   async _getVersion(installedBinary) {
     const versionCommandOutput = await this._getCommandOutput(installedBinary, ['--version']);

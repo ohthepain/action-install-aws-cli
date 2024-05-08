@@ -28806,38 +28806,38 @@ async function isInstalled(toolName) {
 
 async function installAwsCliLinuxX64() {
   if (await isInstalled("aws")) {
-    return resolve(`AWS CLI is already installed`);
-  }
-
-  return new Promise((resolve, reject) => {
-    exec('curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && sudo ./aws/install', (error, stdout, stderr) => {
-      if (error) {
-        reject(`Error installing AWS CLI: ${error.message}`);
-      }
-      if (stderr) {
-        reject(`Error output: ${stderr}`);
-      }
-      resolve(`AWS CLI installed successfully: ${stdout}`);
+    return Promise.resolve(`AWS CLI is already installed`);
+  } else {
+    return new Promise((resolve, reject) => {
+      exec('curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && sudo ./aws/install', (error, stdout, stderr) => {
+        if (error) {
+          reject(`Error installing AWS CLI: ${error.message}`);
+        }
+        if (stderr) {
+          reject(`Error output: ${stderr}`);
+        }
+        resolve(`AWS CLI installed successfully: ${stdout}`);
+      });
     });
-  });
+  }
 }
 
 async function installAwsCliLinuxARM() {
   if (await isInstalled("aws")) {
-    return resolve(`AWS CLI is already installed`);
-  }
-
-  return new Promise((resolve, reject) => {
-    exec('curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && sudo ./aws/install', (error, stdout, stderr) => {
-      if (error) {
-        reject(`Error installing AWS CLI: ${error.message}`);
-      }
-      if (stderr) {
-        reject(`Error output: ${stderr}`);
-      }
-      resolve(`AWS CLI installed successfully: ${stdout}`);
+    return Promise.resolve(`AWS CLI is already installed`);
+  } else {
+    return new Promise((resolve, reject) => {
+      exec('curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && sudo ./aws/install', (error, stdout, stderr) => {
+        if (error) {
+          reject(`Error installing AWS CLI: ${error.message}`);
+        }
+        if (stderr) {
+          reject(`Error output: ${stderr}`);
+        }
+        resolve(`AWS CLI installed successfully: ${stdout}`);
+      });
     });
-  });
+  }
 }
 
 async function installAWSCliWindows() {

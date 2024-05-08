@@ -28786,14 +28786,15 @@ const path = __nccwpck_require__(1017);
 const { installMacOS } = __nccwpck_require__(3193);
 const { toolManager } = __nccwpck_require__(828);
 const { addPath } = __nccwpck_require__(9935)
+const toolCache = __nccwpck_require__(2275);
 
 const IS_WINDOWS = process.platform === 'win32';
 const IS_MACOS = process.platform === 'darwin';
 const IS_LINUX_ARM = process.platform === 'linux' && process.arch === 'arm';
 const IS_LINUX_X64 = process.platform === 'linux' && process.arch === 'x64';
 
-async function isAlreadyInstalled(toolName) {
-  const cachePath = await tc.find(toolName, '*');
+async function isInstalled(toolName) {
+  const cachePath = await toolCache.find(toolName, '*');
   const systemPath = await io.which(toolName);
   if (cachePath) return cachePath;
   if (systemPath) {
@@ -28803,7 +28804,7 @@ async function isAlreadyInstalled(toolName) {
 }
 
 async function installAwsCliLinuxX64() {
-  if (await isAlreadyInstalled("aws")) {
+  if (await isInstalled("aws")) {
     return resolve(`AWS CLI is already installed`);
   }
 
@@ -28821,7 +28822,7 @@ async function installAwsCliLinuxX64() {
 }
 
 async function installAwsCliLinuxARM() {
-  if (await isAlreadyInstalled("aws")) {
+  if (await isInstalled("aws")) {
     return resolve(`AWS CLI is already installed`);
   }
 
@@ -28841,7 +28842,7 @@ async function installAwsCliLinuxARM() {
 async function installAWSCliWindows() {
   const downloadUrl = 'https://s3.amazonaws.com/aws-cli/AWSCLISetup.exe';
   const tool = new toolManager(downloadUrl)
-  const isInstalled = await tool.isAlreadyInstalled('aws')
+  const isInstalled = await isInstalled('aws')
   if (typeof isInstalled === 'string') {
     console.log('WARNING: AWS CLI is already installed but we shall continue');
   }

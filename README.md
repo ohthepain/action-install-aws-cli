@@ -30,7 +30,7 @@ jobs:
       matrix:
         os: [macOS-latest, windows-latest]
     steps:
-      - uses: ohthepain/action-install-aws-cli@v1.1
+      - uses: ohthepain/action-install-aws-cli@v1
       # All commands after this point have access to the AWS CLI
       - run: aws s3 ls
         env:

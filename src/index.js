@@ -4,6 +4,7 @@ const { installMacOS } = require('./macOsSupport');
 const { toolManager } = require('./toolManager');
 const { addPath } = require('@actions/core')
 const toolCache = require('@actions/tool-cache');
+const io = require('@actions/io');
 
 const IS_WINDOWS = process.platform === 'win32';
 const IS_MACOS = process.platform === 'darwin';

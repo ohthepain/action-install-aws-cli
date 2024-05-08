@@ -58,28 +58,27 @@ async function installAwsCliLinuxARM() {
 }
 
 async function installAWSCliWindows() {
-  const downloadUrl = 'https://s3.amazonaws.com/aws-cli/AWSCLISetup.exe';
-  const tool = new toolManager(downloadUrl)
-  const isInstalled = await isInstalled('aws')
-  if (typeof isInstalled === 'string') {
-    console.log('WARNING: AWS CLI is already installed but we shall continue');
+  if (await isInstalled("aws")) {
+    return Promise.resolve(`AWS CLI is already installed`);
+  } else {
+    const downloadUrl = 'https://s3.amazonaws.com/aws-cli/AWSCLISetup.exe';
+    const tool = new toolManager(downloadUrl)
+    // console.log(`start downloadUrl ${downloadUrl}`);
+    let installerPath = await tool.downloadFile();
+    // console.log(`downloaded windows exe to ${installerPath}`);
+    const destDir = 'C:\\PROGRA~1\\Amazon\\AWSCLI';
+    const binFile = 'aws.exe';
+    const destPath = path.join(destDir, 'bin', binFile);
+    // console.log(`destPath ${destPath}`);
+
+    const installArgs = ['/install', '/quiet', '/norestart'];
+    await tool.installPackage(installerPath, installArgs);
+
+    const toolCachePath = await tool.cacheTool(destPath);
+    addPath(toolCachePath);
+
+    return toolCachePath;
   }
-
-  console.log(`start downloadUrl ${downloadUrl}`);
-  let installerPath = await tool.downloadFile();
-  console.log(`downloaded windows exe to ${installerPath}`);
-  const destDir = 'C:\\PROGRA~1\\Amazon\\AWSCLI';
-  const binFile = 'aws.exe';
-  const destPath = path.join(destDir, 'bin', binFile);
-  // console.log(`destPath ${destPath}`);
-
-  const installArgs = ['/install', '/quiet', '/norestart'];
-  await tool.installPackage(installerPath, installArgs);
-
-  const toolCachePath = await tool.cacheTool(destPath);
-  addPath(toolCachePath);
-
-  return toolCachePath;
 }
 
 async function _installTool() {

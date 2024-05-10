@@ -6,6 +6,8 @@
 
 Action to install the most recent version of the aws cli.
 
+NOTE: tool-cache is currently disabled as it was breaking ubuntu due to a dependency on a deprecated uuid library
+
 ## Supported Platforms
 - windows-latest
 - macos-latest

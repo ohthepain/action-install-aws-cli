@@ -33,7 +33,7 @@ jobs:
 
     # I don't think we need to build or check out since we have done an ncc build. So this is just a test.
     - name: "install aws cli"
-      uses: ohthepain/action-install-aws-cli@main
+      uses: ohthepain/action-install-aws-cli@v0.14
       # All commands after this point have access to the AWS CLI
     - run: aws s3 ls
       env:

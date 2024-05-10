@@ -1,6 +1,6 @@
 const { exec } = require('@actions/exec');
 // const core = require('@actions/core');
-const tc = require('@actions/tool-cache');
+// const tc = require('@actions/tool-cache');
 const io = require('@actions/io');
 const path = require('path');
 const { _filterVersion, _readFile } = require('./util');
@@ -12,16 +12,6 @@ class toolManager {
     this.downloadUrl = downloadUrl;
     this.fileType = this.downloadUrl.substr(-4);
   }
-
-  // async isAlreadyInstalled(toolName) {
-  //   const cachePath = await tc.find(toolName, '*');
-  //   const systemPath = await io.which(toolName);
-  //   if (cachePath) return cachePath;
-  //   if (systemPath) {
-  //     return systemPath;
-  //   }
-  //   return false;
-  // }
 
   async _getVersion(installedBinary) {
     const versionCommandOutput = await this._getCommandOutput(installedBinary, ['--version']);
@@ -82,9 +72,9 @@ class toolManager {
   }
 
   async cacheTool(installedBinary) {
-    const installedVersion = await this._getVersion(installedBinary);
-    const cachedPath = await tc.cacheDir(path.parse(installedBinary).dir, 'aws', installedVersion);
-    return cachedPath;
+    // const installedVersion = await this._getVersion(installedBinary);
+    // const cachedPath = await tc.cacheDir(path.parse(installedBinary).dir, 'aws', installedVersion);
+    // return cachedPath;
   }
 }
 

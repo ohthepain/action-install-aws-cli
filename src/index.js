@@ -3,7 +3,7 @@ const path = require('path');
 const { installMacOS } = require('./macOsSupport');
 const { toolManager } = require('./toolManager');
 const { addPath } = require('@actions/core')
-const toolCache = require('@actions/tool-cache');
+// const toolCache = require('@actions/tool-cache');
 const io = require('@actions/io');
 
 const IS_WINDOWS = process.platform === 'win32';
@@ -12,9 +12,9 @@ const IS_LINUX_ARM = process.platform === 'linux' && process.arch === 'arm';
 const IS_LINUX_X64 = process.platform === 'linux' && process.arch === 'x64';
 
 async function isInstalled(toolName) {
-  const cachePath = await toolCache.find(toolName, '*');
+  // const cachePath = await toolCache.find(toolName, '*');
   const systemPath = await io.which(toolName);
-  if (cachePath) return cachePath;
+  // if (cachePath) return cachePath;
   if (systemPath) {
     return systemPath;
   }

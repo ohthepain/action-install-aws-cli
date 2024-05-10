@@ -30,10 +30,11 @@ jobs:
       matrix:
         os: [macOS-latest, windows-latest]
     steps:
-      - uses: ohthepain/action-install-aws-cli@v1
+      - uses: ohthepain/action-install-aws-cli@main
       # All commands after this point have access to the AWS CLI
       - run: aws s3 ls
         env:
+          # environment variables must be added for each aws command
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
